@@ -64,7 +64,7 @@ RUN apt update && apt upgrade -y && \
 # Pypi package Repo upgrade
 RUN pip3 install --upgrade pip setuptools
 
-RUN git clone https://github.com/error-corpse/rail_yuki /root/YukiBot
+RUN git clone https://github.com/error-corpse/koyeb_yuki /root/YukiBot
 WORKDIR /root/YukiBot
 
 #Copy config file to /root/YukiBot/YukiBot
