@@ -13,7 +13,7 @@ class Config(object):
    
     API_HASH = os.getenv("API_HASH", "4e984ea35f854762dcde906dce426c2d")
    
-    TOKEN = os.getenv("TOKEN", "7134066784:AAGVKa8zcfdteUF5jCyKRlSMG7mhlvEecqY")
+    TOKEN = os.getenv("TOKEN", "5527818445:AAE7TLprBfyUuQvYZsaOesQ0F-9C2sl2I80")
   
     OWNER_ID = os.getenv("OWNER_ID", "6259443940") 
 
@@ -36,7 +36,7 @@ class Config(object):
    
     BOT_USERNAME = os.getenv("BOT_USERNAME" , "Yukii_Onna_bot")
    
-    DATABASE_URL = os.getenv("DATABASE_URL", "postgres://akzacbob:6OAabTPgO3mdS3Mx0Wlhb-Cswe3ibMPV@hansken.db.elephantsql.com/akzacbob")
+    DATABASE_URL = os.getenv("DATABASE_URL", "postgres://biglxqlm:K_CuQM58BPWlHCWjQa1hDd4xRSiDs_tm@dumbo.db.elephantsql.com/biglxqlm")
 
     CASH_API_KEY = os.getenv("CASH_API_KEY", "V48U2FLLKRHSVD4X")
     
