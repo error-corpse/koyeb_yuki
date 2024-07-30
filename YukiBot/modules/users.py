@@ -87,7 +87,7 @@ async def broadcast_handler(bot: Client, m: Message):
             )
     completed_in = datetime.timedelta(seconds=int(time.time() - start_time))
     await sts_msg.edit(
-        f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ɪɴ ⏤͟͟͞͞★ {completed_in}.\n\n❅ ᴛᴏᴛᴀʟ ᴄʜᴀᴛꜱ ➠ {total_chats}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_chats}\n❅ sᴜᴄᴄᴇꜱꜱ ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}"
+        f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ɪɴ ⏤͟͟͞͞★ {completed_in}.\n\n❅ ᴛᴏᴛᴀʟ ᴄʜᴀᴛꜱ ➠ {total_chats}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_chats}\n❅ sᴜᴄᴄᴇss ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}"
     )
 
 
@@ -138,11 +138,11 @@ async def broadcast_handler(bot: Client, m: Message):
         done += 1
         if not done % 20:
             await sts_msg.edit(
-                f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ɪɴ ᴘʀᴏɢʀᴇꜱꜱ ⏤͟͟͞͞★\n\n❅ ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ ➠ {total_users}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_users}\n❅ sᴜᴄᴄᴇꜱꜱ ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}"
+                f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ɪɴ ᴘʀᴏɢʀᴇꜱꜱ ⏤͟͟͞͞★\n\n❅ ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ ➠ {total_users}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_users}\n❅ sᴜᴄᴄᴇss ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}"
             )
     completed_in = datetime.timedelta(seconds=int(time.time() - start_time))
     await sts_msg.edit(
-        f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ⏤͟͟͞͞★\n\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ɪɴ ➠ {completed_in}\n❅ ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ ➠ {total_users}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_users}\n❅ sᴜᴄᴄᴇꜱꜱ ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}\n\n⌥ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ʙʏ ➠ ๛ᴀ ᴠ ɪ s ʜ ᴀ ࿐"
+        f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ⏤͟͟͞͞★\n\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ɪɴ ➠ {completed_in}\n❅ ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ ➠ {total_users}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_users}\n❅ sᴜᴄᴄᴇss ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}\n\n⌥ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ʙʏ ➠ ๛ᴀ ᴠ ɪ s ʜ ᴀ ࿐"
     )
 
 
@@ -154,19 +154,38 @@ async def send_msg(user_id, message):
         await asyncio.sleep(e.value)
         return send_msg(user_id, message)
     except InputUserDeactivated:
-        logger.info(f"❅ {user_id} ➥ ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ")
+        logger.info(f"❅ {user_id} ➛ ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ")
         return 400
     except UserIsBlocked:
-        logger.info(f"❅ {user_id} ➥ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ")
+        logger.info(f"❅ {user_id} ➛ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ")
         return 400
     except PeerIdInvalid:
-        logger.info(f"❅ {user_id} ➥ ᴜꜱᴇʀ ɪᴅ ɪɴᴠᴀʟɪᴅ")
+        logger.info(f"❅ {user_id} ➛ ᴜꜱᴇʀ ɪᴅ ɪɴᴠᴀʟɪᴅ")
         return 400
     except Exception as e:
-        logger.error(f"❅ {user_id} ➥ {e}")
-        return 500
+        logger.error(f"❅ {user_id} ➛ {e}")
+        pass
 
 
+# Dispatcher handlers
+
+
+# Error handler
+def error_callback(update: Update, context: CallbackContext):
+    try:
+        raise context.error
+    except Unauthorized:
+        # remove update.message.chat_id from conversation list
+        logger.warning(f"❅ ᴜɴᴀᴜᴛʜᴏʀɪᴢᴇᴅ: {context.error}")
+    except BadRequest:
+        # handle malformed requests
+        logger.warning(f"❅ ʙᴀᴅ ʀᴇǫᴜᴇsᴛ: {context.error}")
+    except TelegramError:
+        # handle all other telegram related errors
+        logger.error(f"❅ ᴛᴇʟᴇɢʀᴀᴍ ᴇʀʀᴏʀ: {context.error}")
+    except Exception as e:
+        # handle everything else
+        logger.exception(f"❅ ᴇxᴄᴇᴘᴛɪᴏɴ: {e}")
 
 
 def log_user(update: Update, context: CallbackContext):
@@ -232,17 +251,13 @@ def __user_info__(user_id):
 
 
 def __stats__():
-    return f"❅ ᴛᴏᴛᴇʟ ᴜsᴇʀs ➛ {user_db.num_users()}\n⌥ ᴀᴄʀᴏss ᴄʜᴀᴛs ➛ {user_db.num_chats()}\n"
+    return f"❅ ᴛᴏᴛᴀʟ ᴜsᴇʀs ➛ {user_db.num_users()}\n⌥ ᴀᴄʀᴏss ᴄʜᴀᴛs ➛ {user_db.num_chats()}\n"
 
 
 def __migrate__(old_chat_id, new_chat_id):
     user_db.migrate_chat(old_chat_id, new_chat_id)
 
 
-
-# BROADCAST_HANDLER = CommandHandler(
-#     ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast, run_async=True
-# )
 USER_HANDLER = MessageHandler(
     Filters.all & Filters.chat_type.groups, log_user, run_async=True
 )
@@ -252,9 +267,12 @@ CHAT_CHECKER_HANDLER = MessageHandler(
 CHATLIST_HANDLER = CommandHandler("groups", chats, run_async=True)
 
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
-# dispatcher.add_handler(BROADCAST_HANDLER)
 dispatcher.add_handler(CHATLIST_HANDLER)
 dispatcher.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
+dispatcher.add_error_handler(error_callback)
+
+broadcast_handler = CommandHandler(["buser", "bchat"], broadcast_handler, filters=Filters.reply)
+dispatcher.add_handler(broadcast_handler)
 
 __mod_name__ = "ɢ-ᴄᴀsᴛ"
 __handlers__ = [(USER_HANDLER, USERS_GROUP), CHATLIST_HANDLER]
@@ -263,4 +281,4 @@ __help__ = """
  ⌥ *ʙʀᴏᴀᴅᴄᴀsᴛ ➛ (ʙᴏᴛ ᴏᴡɴᴇʀ ᴏɴʟʏ)*
  ⌥ /buser *➥* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ᴜsᴇʀs.
  ⌥ /bchat *➥* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ɢʀᴏᴜᴘs.
- """
+"""
