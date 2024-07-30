@@ -6,7 +6,7 @@ from telegram import TelegramError, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CallbackContext, CommandHandler, Filters, MessageHandler
 import YukiBot.modules.no_sql.users_db as user_db 
-from YukiBot import pbot as Mukesh
+from YukiBot import pbot as Yuki
 from YukiBot import DEV_USERS, LOGGER as  logger, OWNER_ID, dispatcher
 from YukiBot.modules.helper_funcs.chat_status import dev_plus, sudo_plus
 from YukiBot.modules.no_sql.users_db import get_all_users
@@ -56,15 +56,15 @@ def get_user_id(username):
 
 
 @dev_plus
-@Mukesh.on_message(filters.command("bchat") & filters.user(OWNER_ID) & filters.reply)
-async def broadcast_chat_handler(bot: Client, m: Message):
+@Yuki.on_message(filters.command("bchat") & filters.user(OWNER_ID) & filters.reply)
+async def broadcast_handler(bot: Client, m: Message):
     all_chats = user_db.get_all_chats() or []
     await bot.send_message(
         OWNER_ID,
-        f"⌥ {m.from_user.mention} ᴏʀ {m.from_user.id} ɪꜱ ꜱᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙʀᴏᴀᴅᴄᴀꜱᴛ......",
+        f"⌥ {m.from_user.mention} ɪꜱ ꜱᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙʀᴏᴀᴅᴄᴀꜱᴛ......",
     )
     broadcast_msg = m.reply_to_message
-    sts_msg = await m.reply_text(f"⌥ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ..")
+    sts_msg = await m.reply_text(f"💌")
     done = 0
     failed = 0
     success = 0
@@ -83,11 +83,11 @@ async def broadcast_chat_handler(bot: Client, m: Message):
         done += 1
         if not done % 20:
             await sts_msg.edit(
-                f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ɪɴ ᴘʀᴏɢʀᴇꜱꜱ ➛ \n\n⌥ ᴛᴏᴛᴀʟ ᴄʜᴀᴛꜱ ➛  {total_chats} \n\n⌥ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➛ {done} / {total_chats}\n\n⌥ sᴜᴄᴄᴇꜱꜱ ➛ {success}\n\n⌥ ғᴀɪʟᴇᴅ ➛ {failed}"
+                f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ɪɴ ᴘʀᴏɢʀᴇꜱꜱ ⏤͟͟͞͞★ \n\n❅ ᴛᴏᴛᴀʟ ᴄʜᴀᴛꜱ ➠  {total_chats}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_chats}\n❅ sᴜᴄᴄᴇꜱꜱ ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}"
             )
     completed_in = datetime.timedelta(seconds=int(time.time() - start_time))
     await sts_msg.edit(
-        f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ɪɴ ➛ {completed_in}.\n\n⌥ ᴛᴏᴛᴀʟ ᴄʜᴀᴛꜱ ➛ {total_chats}\n\n⌥ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➛ {done} / {total_chats}\n\n⌥ sᴜᴄᴄᴇꜱꜱ ➛ {success}\n\n⌥ ғᴀɪʟᴇᴅ ➛ {failed}"
+        f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ɪɴ ⏤͟͟͞͞★ {completed_in}.\n\n❅ ᴛᴏᴛᴀʟ ᴄʜᴀᴛꜱ ➠ {total_chats}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_chats}\n❅ sᴜᴄᴄᴇꜱꜱ ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}"
     )
 
 
@@ -112,15 +112,16 @@ async def send_chat(chat_id, message):
         pass
 
 @dev_plus
-@Mukesh.on_message(filters.command("buser") & filters.user(OWNER_ID) & filters.reply)
-async def broadcast_user_handler(bot: Client, m: Message):
+# broadcast
+@Yuki.on_message(filters.command("buser") & filters.user(OWNER_ID) & filters.reply)
+async def broadcast_handler(bot: Client, m: Message):
     all_users = get_all_users()
     await bot.send_message(
         OWNER_ID,
-        f"⌥ {m.from_user.mention} ᴏʀ {m.from_user.id} ɪꜱ ꜱᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙʀᴏᴀᴅᴄᴀꜱᴛ......",
+        f"⌥ {m.from_user.mention} ɪꜱ ꜱᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙʀᴏᴀᴅᴄᴀꜱᴛ......",
     )
     broadcast_msg = m.reply_to_message
-    sts_msg = await m.reply_text(f"⌥ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ..")
+    sts_msg = await m.reply_text(f"💣")
     done = 0
     failed = 0
     success = 0
@@ -137,11 +138,11 @@ async def broadcast_user_handler(bot: Client, m: Message):
         done += 1
         if not done % 20:
             await sts_msg.edit(
-                f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ɪɴ ᴘʀᴏɢʀᴇꜱꜱ ➛ \n\n⌥ ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ ➛ {total_users} \n\n⌥ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➛ {done} / {total_users}\n\n⌥ sᴜᴄᴄᴇꜱꜱ ➛ {success}\n\n⌥ ғᴀɪʟᴇᴅ ➛ {failed}"
+                f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ɪɴ ᴘʀᴏɢʀᴇꜱꜱ ⏤͟͟͞͞★\n\n❅ ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ ➠ {total_users}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_users}\n❅ sᴜᴄᴄᴇꜱꜱ ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}"
             )
     completed_in = datetime.timedelta(seconds=int(time.time() - start_time))
     await sts_msg.edit(
-        f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴄᴏᴍᴩʟᴇᴛᴇᴅ  \n\n⌥ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ɪɴ ➛ {completed_in}.\n\n⌥ ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ ➛ {total_users}\n\n⌥ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➛ {done} / {total_users}\n\n⌥ sᴜᴄᴄᴇꜱꜱ ➛ {success}\n\n⌥ ғᴀɪʟᴇᴅ ➛ {failed}"
+        f"⌥ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ⏤͟͟͞͞★\n\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ɪɴ ➠ {completed_in}\n❅ ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ ➠ {total_users}\n❅ ᴄᴏᴍᴩʟᴇᴛᴇᴅ ➠ {done} / {total_users}\n❅ sᴜᴄᴄᴇꜱꜱ ➠ {success}\n❅ ғᴀɪʟᴇᴅ ➠ {failed}\n\n⌥ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ʙʏ ➠ ๛ᴀ ᴠ ɪ s ʜ ᴀ ࿐"
     )
 
 
@@ -153,16 +154,16 @@ async def send_msg(user_id, message):
         await asyncio.sleep(e.value)
         return send_msg(user_id, message)
     except InputUserDeactivated:
-        logger.info(f"⌥ {user_id} ➛ ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ")
+        logger.info(f"❅ {user_id} ➥ ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ")
         return 400
     except UserIsBlocked:
-        logger.info(f"⌥ {user_id} ➛ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ")
+        logger.info(f"❅ {user_id} ➥ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ")
         return 400
     except PeerIdInvalid:
-        logger.info(f"⌥ {user_id} ➛ ᴜꜱᴇʀ ɪᴅ ɪɴᴠᴀʟɪᴅ")
+        logger.info(f"❅ {user_id} ➥ ᴜꜱᴇʀ ɪᴅ ɪɴᴠᴀʟɪᴅ")
         return 400
     except Exception as e:
-        logger.error(f"⌥ {user_id} ➛ {e}")
+        logger.error(f"❅ {user_id} ➥ {e}")
         return 500
 
 
@@ -231,30 +232,17 @@ def __user_info__(user_id):
 
 
 def __stats__():
-    total_users = 1500 + user_db.num_users()
-    total_chats = 70 + user_db.num_chats()
-    return f"⌥ ᴛᴏᴛᴀʟ ᴜsᴇʀs ➛ {total_users}\n⌥ ᴀᴄʀᴏss ᴄʜᴀᴛs ➛ {total_chats}\n"
+    return f"❅ ᴛᴏᴛᴇʟ ᴜsᴇʀs ➛ {user_db.num_users()}\n⌥ ᴀᴄʀᴏss ᴄʜᴀᴛs ➛ {user_db.num_chats()}\n"
 
 
 def __migrate__(old_chat_id, new_chat_id):
     user_db.migrate_chat(old_chat_id, new_chat_id)
 
-def broadcast(update: Update, context: CallbackContext):
-    command = context.args[0] if context.args else None
-    if command == "broadcastall":
-        asyncio.run(broadcast_chat_handler(update, context))
-        asyncio.run(broadcast_user_handler(update, context))
-    elif command == "broadcastusers":
-        asyncio.run(broadcast_user_handler(update, context))
-    elif command == "broadcastgroups":
-        asyncio.run(broadcast_chat_handler(update, context))
-    else:
-        update.message.reply_text("Unknown broadcast command")
 
 
-BROADCAST_HANDLER = CommandHandler(
-     ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast, run_async=True
- )
+# BROADCAST_HANDLER = CommandHandler(
+#     ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast, run_async=True
+# )
 USER_HANDLER = MessageHandler(
     Filters.all & Filters.chat_type.groups, log_user, run_async=True
 )
@@ -264,7 +252,7 @@ CHAT_CHECKER_HANDLER = MessageHandler(
 CHATLIST_HANDLER = CommandHandler("groups", chats, run_async=True)
 
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
-dispatcher.add_handler(BROADCAST_HANDLER)
+# dispatcher.add_handler(BROADCAST_HANDLER)
 dispatcher.add_handler(CHATLIST_HANDLER)
 dispatcher.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
 
@@ -273,12 +261,6 @@ __handlers__ = [(USER_HANDLER, USERS_GROUP), CHATLIST_HANDLER]
 
 __help__ = """
  ⌥ *ʙʀᴏᴀᴅᴄᴀsᴛ ➛ (ʙᴏᴛ ᴏᴡɴᴇʀ ᴏɴʟʏ)*
-
- ⌥ *ɴᴏᴛᴇ ➛* ᴛʜɪs sᴜᴘᴘᴏʀᴛs ʙᴀsɪᴄ ᴍᴀʀᴋᴅᴏᴡɴ
-
- ⌥ /broadcastall *➛* ʙʀᴏᴀᴅᴄᴀsᴛs ᴇᴠᴇʀʏᴡʜᴇʀᴇ
- 
- ⌥ /broadcastusers *➛* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ᴜsᴇʀs
- 
- ⌥ /broadcastgroups *➛* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ɢʀᴏᴜᴘs
+ ⌥ /buser *➥* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ᴜsᴇʀs.
+ ⌥ /bchat *➥* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ɢʀᴏᴜᴘs.
  """
