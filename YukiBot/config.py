@@ -5,7 +5,7 @@ class Config(object):
 
     #####
 
-    PORT = os.environ.get("PORT", "8000")
+    PORT = os.environ.get("PORT", "8080")
 
     ANILIST_CLIENT = os.getenv("ANILIST_CLIENT", "8679")
   
