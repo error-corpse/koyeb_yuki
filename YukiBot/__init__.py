@@ -11,6 +11,9 @@ from pyrogram import Client, errors
 from telethon import TelegramClient
 from telegram.ext import Updater
 
+from aiohttp import web
+from .route import routes
+
 StartTime = time.time()
 
 # enable logging
@@ -145,6 +148,12 @@ else:
         WOLVES = set(int(x) for x in Config.WOLVES or [])
     except ValueError:
         raise Exception("Your whitelisted users list does not contain valid integers.")
+
+# web
+async def web_server():
+    web_app = web.Application(client_max_size=30000000)
+    web_app.add_routes(routes)
+    return web_app
 
 
 DRAGONS.add(OWNER_ID)
